@@ -16,9 +16,14 @@ for(var i = 0; i < keys.length; i++) {
 		
 		
 		// Implement keys functions
+		
+		/*************
+		Functional keys
+		**************/
+		
 		// Clear all button
 		var clear = function() {
-			input.innerHTML = '0';
+			input.innerHTML = "0";
 			decimalAdded = false;
 			beenEvaluated = false;
 		};
@@ -29,7 +34,6 @@ for(var i = 0; i < keys.length; i++) {
 		//erase button
 		var erase = function() {
 			if (!beenEvaluated) {
-				var lastChar = inputVal[inputVal.length - 1];
 				if(inputVal.length > 1) {
 				input.innerHTML = inputVal.replace(/.$/, '');
 				}
@@ -61,6 +65,43 @@ for(var i = 0; i < keys.length; i++) {
 			}
 			
 		};
+		
+		/*************
+		Formula keys
+		**************/
+		
+		var percentage = function() {
+			
+		}
+		
+		var squareRoot = function() {
+			
+		}
+		
+		var powerOfTwo = function() {
+			/*
+			1.Получаю данные с экрана.
+			2.Нахожу крайнюю цифру перед знаком и вырезаю все число до этой цифры.
+				
+			3.Умножаю полуившееся число само на себя.
+			4.Добавляю получившееся произведение к уравнению на экране.
+			
+			*/
+			var equation = inputVal;
+			var numToSquare = 0;
+			
+			
+		}
+		
+		var fractionOne = function() {
+			
+		}
+		
+		
+		/*************
+		Logic functions
+		**************/
+		
 		//operators logic fix
 		var operateFix = function() {
 			// Get the last character from the equation

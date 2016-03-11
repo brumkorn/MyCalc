@@ -18,11 +18,17 @@ html {
 	box-sizing: border-box;
 	width: 325px;
 	height: auto;
-	
 	margin: 100px auto;
-	
-	background: #E6E6E6;
 	border: 1px solid #565656;
+}
+
+.extra span {
+	border-top: 2px solid #E6E6E6;
+	background: #F2F2F2;
+}
+
+.mainKeys span{
+	background: #E6E6E6;
 }
 
 
@@ -34,10 +40,10 @@ html {
 
 .screenBot {
 	padding-right: 10px;
-	height: 50px;
+	height: 70px;
 		/* Typography */
-	font-size: 35px;
-	line-height: 50px;
+	font-size: 50px;
+	line-height: 70px;
 	color: black;
 	text-align: right;
 	letter-spacing: 1px;
@@ -69,7 +75,6 @@ span {
 	width: 25%;
 	height: 50px;
 	
-	background: #E6E6E6;
 	
 	/* Typography */
 	color: black;
@@ -97,15 +102,20 @@ span {
 }
 
 /*Key pressing */
-.keys span:hover {
+span:hover {
 	background: #CFCFCF;
 }
 
-.keys span.ev:hover {
-	background: #727272;
+.equals:hover {
+	background: #8f8f93;
 }
 
-.keys span:active, .keys span.ev:active {
+.equals:active {
+	background: #B8B8B8;
+	top: 1px;
+}
+
+span:active {
 	background: #B8B8B8;
 	top: 1px;
 }
