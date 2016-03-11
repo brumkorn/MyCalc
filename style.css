@@ -1,0 +1,111 @@
+html {
+	height: 100%;
+	background: radial-gradient(circle, #A7AABA 20%, #4A485B);
+	background-size: cover;
+	
+	margin: 0;
+	padding: 0;
+	
+	font: bold 14px Arial, sans-serif;
+	
+	/* prevent selection of text */
+	-webkit-user-select: none;  
+ 	-moz-user-select: none;     
+ 	-ms-user-select: none; 
+}
+
+#calc {
+	box-sizing: border-box;
+	width: 325px;
+	height: auto;
+	
+	margin: 100px auto;
+	
+	background: #E6E6E6;
+	border: 1px solid #565656;
+}
+
+
+.screens  {
+	width: 100%;
+	background: #F2F2F2;
+}
+
+
+.screenBot {
+	padding-right: 10px;
+	height: 50px;
+		/* Typography */
+	font-size: 35px;
+	line-height: 50px;
+	color: black;
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+/*Futuring assistant screen*/
+.screenTop {
+	height: 25px;
+		/* Typography */
+	font-size: 11px;
+	line-height: 40px;
+	color: grey;
+	text-align: right;
+	letter-spacing: 1px;
+}
+
+.keys, .screens {overflow: hidden;}
+
+
+/*Keys*/
+span {
+	
+	float: left;
+	position: relative;
+	top: 0;
+	
+	cursor: default;
+	
+	width: 25%;
+	height: 50px;
+	
+	background: #E6E6E6;
+	
+	/* Typography */
+	color: black;
+	line-height: 50px;
+	text-align: center;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: sans-serif;
+	
+	/* Smoothing hover*/
+	transition: all 0.1s ease;
+	
+}
+
+.ev {
+	float:right;
+}
+
+
+
+.operator {
+	font-size: 25px;
+	font-weight: 100;
+	font-family: sans-serif;
+}
+
+/*Key pressing */
+.keys span:hover {
+	background: #CFCFCF;
+}
+
+.keys span.ev:hover {
+	background: #727272;
+}
+
+.keys span:active, .keys span.ev:active {
+	background: #B8B8B8;
+	top: 1px;
+}
