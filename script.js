@@ -72,11 +72,11 @@ for(var i = 0; i < keys.length; i++) {
 		
 		var percentage = function() {
 			
-		}
+		};
 		
 		var squareRoot = function() {
 			
-		}
+		};
 		
 		var powerOfTwo = function() {
 			/*
@@ -91,11 +91,11 @@ for(var i = 0; i < keys.length; i++) {
 			var numToSquare = 0;
 			
 			
-		}
+		};
 		
 		var fractionOne = function() {
 			
-		}
+		};
 		
 		
 		/*************
