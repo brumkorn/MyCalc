@@ -22,6 +22,16 @@ html {
 	border: 1px solid #565656;
 }
 
+#UkraineBlue {
+	background: radial-gradient(ellipse, #60abf8 2%, #4A485B);
+	
+}
+
+#UkraineYellow {
+	background: linear-gradient(135deg, #fefcea 0%,#f1da36 13%,#f1da36 13%);
+	background: radial-gradient(ellipse, #f1da36 1%, #4A485B);
+}
+
 .extra span {
 	border-top: 2px solid #E6E6E6;
 	background: #F2F2F2;

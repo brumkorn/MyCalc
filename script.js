@@ -10,9 +10,9 @@ for(var i = 0; i < keys.length; i++) {
 	
 	keys[i].onclick = function(e) {
 		// Get the input and button values
-		var input = document.querySelector('.screenBot');
-		var inputVal = input.innerHTML;
-		var btnVal = this.innerHTML;
+		var input = document.querySelector('.screenBot'),
+			inputVal = input.innerHTML,
+			btnVal = this.innerHTML;
 		
 		
 		// Implement keys functions
@@ -22,17 +22,17 @@ for(var i = 0; i < keys.length; i++) {
 		**************/
 		
 		// Clear all button
-		var clear = function() {
+		function clear() {
 			input.innerHTML = "0";
 			decimalAdded = false;
 			beenEvaluated = false;
 		};
 		//reverse sign button
-		var reverse = function() {
+		function reverse() {
 			input.innerHTML = inputVal * -1;
 		};
 		//erase button
-		var erase = function() {
+		function erase() {
 			if (!beenEvaluated) {
 				if(inputVal.length > 1) {
 				input.innerHTML = inputVal.replace(/.$/, '');
@@ -43,20 +43,20 @@ for(var i = 0; i < keys.length; i++) {
 			}
 		};
 		// Evaluation button
-		var evaluate = function() {
+		function evaluate() {
 			var equation = inputVal;
 			var lastChar = equation[equation.length - 1];
 			
 			// replace with right source operators
 			equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
 			
-			// check and remove last char it if it's an operator
-			if(operators.indexOf(lastChar) > -1) {
+			// if lastChar is operator self apply it to number
+			if(operators.includes(lastChar)) {
 				equation = equation + equation.replace(/.$/, '');
 			}
 			
-			if(lastChar === '.') {
-				equation = equation.replace(/.$/, '');
+			if(lastChar === ".") {
+				equation = equation.replace(/.$/, "");
 			}
 			
 			if(equation) {
@@ -70,32 +70,84 @@ for(var i = 0; i < keys.length; i++) {
 		Formula keys
 		**************/
 		
-		var percentage = function() {
+		function percentage() {
 			
 		};
 		
-		var squareRoot = function() {
+		function squareRoot() {
+			var equation = inputVal,
+				numToSquare = 0,
+				position = -1,
+				square;
 			
+			(function positioning() {
+				for(var i = (equation.length-1); i >=0; i--) {
+					var needChar = equation.charAt(i);
+					if(operators.includes(needChar)){
+						position = i;
+						return;
+					}
+				}
+			})();
+			
+			numToSquare = equation.slice(position+1);
+			equation = equation.slice(0, position+1);
+			square = Math.sqrt(numToSquare);
+			
+			input.innerHTML = equation + square;
+			beenEvaluated = true;
 		};
 		
-		var powerOfTwo = function() {
-			/*
-			1.Получаю данные с экрана.
-			2.Нахожу крайнюю цифру перед знаком и вырезаю все число до этой цифры.
-				
-			3.Умножаю полуившееся число само на себя.
-			4.Добавляю получившееся произведение к уравнению на экране.
+		function powerOfTwo() {
 			
-			*/
-			var equation = inputVal;
-			var numToSquare = 0;
+			var equation = inputVal,
+				numToSquare = 0,
+				position = -1,
+				square;
 			
+			(function positioning() {
+				for(var i = (equation.length-1); i >=0; i--) {
+					var needChar = equation.charAt(i);
+					if(operators.includes(needChar)){
+						position = i;
+						return;
+					}
+				}
+			})();
 			
+			numToSquare = equation.slice(position+1);
+			equation = equation.slice(0, position+1);
+			square = numToSquare*numToSquare;
+			
+			input.innerHTML = equation + square;
+			beenEvaluated = true;
 		};
 		
-		var fractionOne = function() {
+		function fractionOne() {
 			
+			var equation = inputVal,
+				numToFract = 0,
+				position = -1,
+				fract;
+			
+			(function positioning() {
+				for(var i = (equation.length-1); i >=0; i--) {
+					var needChar = equation.charAt(i);
+					if(operators.includes(needChar)){
+						position = i;
+						return;
+					}
+				}
+			})();
+			
+			numToFract = equation.slice(position+1);
+			equation = equation.slice(0, position+1);
+			fract = 1/numToFract;
+			
+			input.innerHTML = equation + fract;
+			beenEvaluated = true;
 		};
+		
 		
 		
 		/*************
@@ -103,31 +155,31 @@ for(var i = 0; i < keys.length; i++) {
 		**************/
 		
 		//operators logic fix
-		var operateFix = function() {
+		function operateFix() {
 			// Get the last character from the equation
 			var lastChar = inputVal[inputVal.length - 1];
 			// Only add operator if input is not empty and there is no operator at the last
-			if(inputVal !== ''  && operators.indexOf(lastChar) === -1) 
+			if(!operators.includes(lastChar)) {
 				input.innerHTML += btnVal;
-			// Allow minus if the string is empty
-			else if(inputVal === '' && btnVal === '-') 
-				input.innerHTML += btnVal;
-			// Replace the last operator (if exists) with the newly pressed operator
-			if(operators.indexOf(lastChar) > -1 && inputVal.length > 1) {
+			}
+			// prevent apear of ajacent operators or dots
+			if(operators.includes(lastChar) || lastChar === "." ) {
 				input.innerHTML = inputVal.replace(/.$/, btnVal);
 			}
+			
+		
 			decimalAdded = false;
 			beenEvaluated = false;
 		};
 		// prevent multi decimals
-		var decimalIndicator = function() {
+		function decimalIndicator() {
 			if(!decimalAdded) {
 				input.innerHTML += btnVal;
 				decimalAdded = true;
 			}
 		};
 		//keys append, initial zero fix
-		var appending = function() {
+		function appending() {
 			if(inputVal === "0" || beenEvaluated) {
 			input.innerHTML = btnVal;
 			beenEvaluated = false;
@@ -141,10 +193,19 @@ for(var i = 0; i < keys.length; i++) {
 		if(btnVal === 'C') {
 			clear();
 		}
-		else if(btnVal === "\u00B1") {
+		else if(btnVal === "\u221A") { /*Square Root 	\u1D4B3*/
+			squareRoot();
+		}
+		else if(btnVal === "x\u00B2") { /*Power of two 	\u1D4B3*/
+			powerOfTwo();
+		}
+		else if(btnVal === "1\u2044") { /*1/x fraction  \u2044*/
+			fractionOne();
+		}
+		else if(btnVal === "\u00B1") { /*REVERSE*/
 			reverse();
 		}
-		else if(btnVal === "\u232B") {
+		else if(btnVal === "\u232B") { /*ERASE*/
 			erase();
 		}
 		else if(btnVal === '=') {
