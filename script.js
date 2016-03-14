@@ -1,20 +1,19 @@
 // Get all the keys from document
-var keys = document.querySelectorAll('.keys span');
-var operators = ['+', '-', 'x', '÷'];
-var decimalAdded = false;
-var beenEvaluated = false;
-
-
-// Add onclick event and perform operations
-for(var i = 0; i < keys.length; i++) {
+var keys = document.querySelectorAll('.keys span'),
+	operators = ['+', '-', 'x', '÷'],
+	decimalAdded = false,
+	beenEvaluated = false;
 	
-	keys[i].onclick = function(e) {
-		// Get the input and button values
-		var input = document.querySelector('.screenBot'),
+for(var i = 0; i < keys.length; i++) {
+	keys[i].addEventListener("click", calculate, false);
+};
+
+
+			
+function calculate(e) {
+	var input = document.querySelector('.screenBot'),
 			inputVal = input.innerHTML,
-			btnVal = this.innerHTML;
-		
-		
+	 btnVal = this.innerHTML;
 		// Implement keys functions
 		
 		/*************
@@ -69,18 +68,12 @@ for(var i = 0; i < keys.length; i++) {
 		/*************
 		Formula keys
 		**************/
-		
+		/*futuring*/
 		function percentage() {
 			
 		};
 		
-		function squareRoot() {
-			var equation = inputVal,
-				numToSquare = 0,
-				position = -1,
-				square;
-			
-			(function positioning() {
+		function positioning(equation, position) {
 				for(var i = (equation.length-1); i >=0; i--) {
 					var needChar = equation.charAt(i);
 					if(operators.includes(needChar)){
@@ -88,10 +81,25 @@ for(var i = 0; i < keys.length; i++) {
 						return;
 					}
 				}
-			})();
+			};
+		
+		
+		function squareRoot() {
 			
+			var equation = inputVal,
+				numToSquare = 0,
+				position = -1,
+				square;
+			
+			/*
+			find position of nearest operator in equation from end
+			*/
+			positioning(equation, position);
+			
+			/*Separate necessary number from the rest equation*/
 			numToSquare = equation.slice(position+1);
 			equation = equation.slice(0, position+1);
+			/*Manipulate with number and add it to last equation*/
 			square = Math.sqrt(numToSquare);
 			
 			input.innerHTML = equation + square;
@@ -105,15 +113,7 @@ for(var i = 0; i < keys.length; i++) {
 				position = -1,
 				square;
 			
-			(function positioning() {
-				for(var i = (equation.length-1); i >=0; i--) {
-					var needChar = equation.charAt(i);
-					if(operators.includes(needChar)){
-						position = i;
-						return;
-					}
-				}
-			})();
+			positioning(equation, position);
 			
 			numToSquare = equation.slice(position+1);
 			equation = equation.slice(0, position+1);
@@ -130,15 +130,7 @@ for(var i = 0; i < keys.length; i++) {
 				position = -1,
 				fract;
 			
-			(function positioning() {
-				for(var i = (equation.length-1); i >=0; i--) {
-					var needChar = equation.charAt(i);
-					if(operators.includes(needChar)){
-						position = i;
-						return;
-					}
-				}
-			})();
+			positioning(equation, position);
 			
 			numToFract = equation.slice(position+1);
 			equation = equation.slice(0, position+1);
@@ -220,6 +212,8 @@ for(var i = 0; i < keys.length; i++) {
 		else {
 			appending();
 		}
-		
-	} 
-}
+}			
+
+
+
+
