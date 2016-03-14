@@ -191,7 +191,7 @@ function calculate(e) {
 		else if(btnVal === "x\u00B2") { /*Power of two 	\u1D4B3*/
 			powerOfTwo();
 		}
-		else if(btnVal === "1\u2044") { /*1/x fraction  \u2044*/
+		else if(btnVal === "1\u2044x") { /*1/x fraction  \u2044*/
 			fractionOne();
 		}
 		else if(btnVal === "\u00B1") { /*REVERSE*/
@@ -203,7 +203,7 @@ function calculate(e) {
 		else if(btnVal === '=') {
 			evaluate();
 		}
-		else if(operators.indexOf(btnVal) > -1) {
+		else if(operators.includes(btnVal)) { //operators logic fix
 			operateFix();
 		}
 		else if(btnVal === '.') {
